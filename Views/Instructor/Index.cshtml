@@ -56,6 +56,49 @@
                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <table>
+                            <tr>
+                                @{
+                int cnt = 0;
+                List<ContosoUniversity.ViewModels.AssignedCourseData> courses = ViewBag.Courses;
+
+                foreach (var course in courses)
+                {
+                    if (cnt++ % 3 == 0)
+                    {
+                        @: </tr>
+                    <tr>
+                        }
+                        @:<td>
+                            <input type="checkbox"
+                                   name="selectedCourses"
+                                   value="@course.CourseID"
+                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                    @course.CourseID @:  @course.Title
+                                    @:  </td>
+                    }
+                    @: </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+            @{
+                foreach (var course in item.Courses)
+        {
+            @course.CourseID @:  @course.Title <br />
+        }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.ID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
         </tr>
     }
 
@@ -69,6 +112,7 @@
             <th>Number</th>
             <th>Title</th>
             <th>Department</th>
+            <th>Courses</th>
         </tr>
 
         @foreach (var item in Model.Courses)
