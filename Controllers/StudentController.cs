@@ -128,11 +128,10 @@ namespace ContosoUniversity.Controllers
             }
             return View(student);
         }
-
         // POST: Students/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             try
             {
